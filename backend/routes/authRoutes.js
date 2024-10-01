@@ -5,7 +5,7 @@ const User = require('../models/User');
 const router = express.Router();
 
 router.post('/register', async (req, res) => {
-  const { username, email, password } = req.body;
+  const { username, email, password,fullName, phone, birthDate } = req.body;
 
   try {
     // Verifica se o usuário já existe
@@ -15,7 +15,7 @@ router.post('/register', async (req, res) => {
     }
 
     // Cria novo usuário
-    user = new User({ username, email, password });
+    user = new User({ username, email, password, fullName, phone, birthDate });
     await user.save();
 
     // Gera o token JWT
