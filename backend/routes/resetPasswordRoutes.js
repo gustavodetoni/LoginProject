@@ -6,6 +6,9 @@ const crypto = require('crypto');
 
 const transporter = nodemailer.createTransport({
   service: 'gmail', 
+  host: "smt.gmail.com",
+  port: 587,
+  secure: false,
   auth: {
     user: process.env.EMAIL_USER, 
     pass: process.env.EMAIL_PASS, 
@@ -21,10 +24,10 @@ router.post('/forgot-password', async (req, res) => {
       return res.status(404).json({ message: 'Usuário não encontrado' });
     }
 
-    const resetToken = crypto.randomBytes(20).toString('hex');
+    const resetToken = generateToken();
     
     user.resetPasswordToken = resetToken;
-    user.resetPasswordExpires = Date.now() + 5000; 
+    user.resetPasswordExpires = Date.now() + 300000; //milisegundos -> 5 minutos
     await user.save();
 
     const mailOptions = {
@@ -32,7 +35,7 @@ router.post('/forgot-password', async (req, res) => {
       subject: 'Redefinição de Senha',
       text: `Você está recebendo este email porque solicitou a redefinição da sua senha.\n\n` +
             `Por favor, use o seguinte código para redefinir sua senha: ${resetToken}\n\n` +
-            `Esse código é válido por 1 hora.`,
+            `Esse código é válido por 5 minutos.`,
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
@@ -45,6 +48,11 @@ router.post('/forgot-password', async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
+
+const generateToken = () => {
+    const token = Math.floor(100000 + Math.random() * 900000);
+    return token.toString();
+  };
 
 router.post('/reset-password', async (req, res) => {
   const { resetToken, newPassword } = req.body;
