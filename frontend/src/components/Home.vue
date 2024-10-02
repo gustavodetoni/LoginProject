@@ -11,9 +11,11 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 
 const handleLogout = () => {
-  localStorage.removeItem('token')
-  router.push('/login')
-}
+  localStorage.removeItem('token');
+  loggedIn.value = false;
+  currentView.value = 'login'; 
+  router.push('/login');
+};
 </script>
 
 <style scoped>
