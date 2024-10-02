@@ -9,13 +9,15 @@
       <div class="form-group">
         <label for="password">Senha</label>
         <input id="password" v-model="password" type="password" placeholder="Sua senha" required>
-        <a href="#" @click.prevent="$emit('forgotPassword')">Esqueceu a senha?</a>
+        <router-link to="/forgot-password">Esqueceu a senha?</router-link>
       </div>
       <button type="submit" class="btn">Entrar</button>
     </form>
     <div class="links">
       <p>Ainda não possui conta?</p>
-      <a href="#" @click.prevent="$emit('goToRegister')">Cadastre-se</a>
+      <router-link to="/register">
+        Cadastre-se
+      </router-link>
     </div>
   </div>
 </template>

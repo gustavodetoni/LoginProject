@@ -1,21 +1,34 @@
 <template>
   <div class="home">
     <h1>Bem-vindo!</h1>
-    <button @click="handleLogout">Logout</button>
+    <div v-if="loggedIn">
+        <button @click="handleLogout" class="btn btn-logout">Sair</button>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router'
+import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 
-const router = useRouter()
+const router = useRouter();
+const loggedIn = ref(false);
 
 const handleLogout = () => {
   localStorage.removeItem('token');
   loggedIn.value = false;
-  currentView.value = 'login'; 
   router.push('/login');
 };
+
+onMounted(() => {
+  const token = localStorage.getItem('token');
+  if (token) {
+    loggedIn.value = true;
+    router.push('/home');
+  } else {
+    router.push('/login');
+  }
+});
 </script>
 
 <style scoped>

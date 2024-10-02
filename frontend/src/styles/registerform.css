@@ -1,0 +1,58 @@
+
+
+.form-container {
+    width: 600px;
+    margin: 0 auto;
+    padding: 12px;
+  }
+  
+  input{
+    width: 100%;
+  }
+
+  .form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+  
+  .form-group {
+    flex: 1;
+    margin-right: 16px;
+  }
+  
+  .password-strength {
+    margin-top: 5px;
+    font-size: 14px;
+    color: var(--secondary-color);
+    font-weight: 500;
+  }
+
+  .button-group{
+    display: flex;
+
+  }
+
+  button{
+    flex: 1;
+    margin-right: 16px;
+  }
+  
+  @media (max-width: 600px) {
+    .form-row {
+      flex-direction: column;
+    }
+  
+    .form-group {
+      margin-right: 0;
+      margin-bottom: 1rem;
+    }
+  
+    .button-group {
+      flex-direction: column;
+    }
+  
+    .button-group button {
+      margin-bottom: 0.5rem;
+    }
+  }
