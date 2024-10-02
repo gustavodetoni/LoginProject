@@ -54,23 +54,15 @@ h2 {
   cursor: pointer;
   font-size: 16px;
   font-weight: 500;
-  transition: background-color 0.3s, transform 0.1s;
+  transition: bbackground-color 0.3s ease;
   width: 100%;
   margin-top: 16px;
 }
 
-.btn:hover {
-  background-color: (var(--primary-houver-color), 10%);
-  transform: translateY(-1px);
-}
-
 .btn:active {
-  transform: translateY(1px);
+  background-color: var(--primary-active-color);
 }
 
-.btn-logout {
-  background-color: var(--secondary-color);
-}
 
 input {
   width: 100%;

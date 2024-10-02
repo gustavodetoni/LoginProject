@@ -26,6 +26,10 @@
 <script setup>
 import { ref } from 'vue'
 import LoginForm from './components/LoginForm.vue'
+import RegisterForm from './components/RegisterForm.vue'
+import ForgotPasswordForm from './components/ForgotPasswordForm.vue'
+import ResetPasswordForm from './components/ResetPasswordForm.vue'
+
 
 const currentView = ref('login')
 const loggedIn = ref(false)
