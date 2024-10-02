@@ -1,6 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  background-color: #c4c4c4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  --primary-color: #4a90e2;
+  --primary-houver-color: #95c2f6;
+  --secondary-color: #f5a623;
+  --background-color: #f0f2f5;
+  --text-color: #333;
+  --error-color: #e74c3c;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--background-color);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+}
+
+#app {
+  width: 100%;
+  max-width: 400px;
+}
+
+.container {
+  background-color: white;
+  padding: 32px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+h2 {
+  color: var(--primary-color);
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.btn {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background-color 0.3s, transform 0.1s;
+  width: 100%;
+  margin-top: 16px;
+}
+
+.btn:hover {
+  background-color: (var(--primary-houver-color), 10%);
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-logout {
+  background-color: var(--secondary-color);
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+input:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+.error {
+  color: var(--error-color);
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: darken(var(--primary-color), 15%);
+  text-decoration: underline;
+}
+
+.logged-in {
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 20px;
+  }
 }
 
 

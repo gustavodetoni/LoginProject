@@ -5,7 +5,9 @@ const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const resetPasswordRoutes = require('./routes/resetPasswordRoutes');
 const app = express();
+const cors = require('cors');
 
+app.use(cors());
 app.use(express.json());
 
 connectDB();
