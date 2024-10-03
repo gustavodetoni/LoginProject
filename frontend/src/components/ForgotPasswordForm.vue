@@ -5,14 +5,17 @@
       <div class="form-group">
         <label for="email">Email</label>
         <input id="email" v-model="email" type="email" placeholder="Seu email" required>
+        <router-link to="/login">Voltar</router-link>
       </div>
       <button type="submit" class="btn">Enviar</button>
     </form>
+
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
 const email = ref('')
 
