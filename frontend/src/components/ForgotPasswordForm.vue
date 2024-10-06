@@ -3,13 +3,13 @@
     <h2>Esqueceu a Senha</h2>
     <form @submit.prevent="handleSubmit">
       <div class="form-group">
-        <label for="email">Email</label>
+        <p>Digite o seu email de login</p>
+        <p>Você receberá um email com um Token que sera validado para redefinição de senha</p>
         <input id="email" v-model="email" type="email" placeholder="Seu email" required>
         <router-link to="/login">Voltar</router-link>
       </div>
-      <button type="submit" class="btn">Enviar</button>
+      <button type="submit" class="btn" @click="goToResetPassword">Enviar</button>
     </form>
-
   </div>
 </template>
 
@@ -35,6 +35,10 @@ const handleSubmit = async () => {
   } catch (error) {
     console.error('Erro no servidor:', error);
   }
+}
+
+const goToResetPassword = () => {
+  router.push('/reset-password')
 }
 </script>
 

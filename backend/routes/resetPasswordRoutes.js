@@ -78,4 +78,23 @@ router.post('/reset-password', async (req, res) => {
   }
 });
 
+router.post('/validate-token', async (req, res) => {
+  const { resetToken } = req.body;
+
+  try {
+    const user = await User.findOne({
+      resetPasswordToken: resetToken,
+      resetPasswordExpires: { $gt: Date.now() }
+    });
+
+    if (!user) {
+      return res.status(400).json({ message: 'Código de validação inválido ou expirado' });
+    }
+
+    res.json({ message: 'Código de validação bem-sucedido' });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 module.exports = router;

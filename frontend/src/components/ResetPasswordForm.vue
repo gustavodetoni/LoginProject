@@ -5,6 +5,9 @@
       <div class="form-group">
         <label for="newPassword">Nova senha</label>
         <input id="newPassword" v-model="newPassword" type="password" placeholder="Digite a nova senha" required>
+        <p></p>
+        <label for="newPassword">Digite novamente a senha</label>
+        <input id="newPassword" v-model="newPassword" type="password" placeholder="Digite a nova senha" required>
       </div>
       <button type="submit" class="btn">Redefinir Senha</button>
     </form>
