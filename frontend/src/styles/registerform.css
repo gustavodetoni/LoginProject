@@ -37,6 +37,16 @@
     flex: 1;
     margin-right: 16px;
   }
+
+  .is-invalid {
+    border-color: red;
+  }
+  
+  .invalid-feedback {
+    color: red;
+    font-size: 0.875em;
+    margin-top: 0.25rem;
+  }
   
   @media (max-width: 600px) {
     .form-row {

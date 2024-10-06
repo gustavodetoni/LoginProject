@@ -6,6 +6,7 @@ import ForgotPasswordForm from '../src/components/ForgotPasswordForm.vue';
 import ResetPasswordForm from '../src/components/ResetPasswordForm.vue';
 
 const routes = [
+    { path: '/', name: '', component: LoginForm },
     { path: '/login', name: 'login', component: LoginForm },
     { path: '/register', name: 'register', component: RegisterForm },
     { path: '/forgot-password', name: 'forgot-password', component: ForgotPasswordForm },

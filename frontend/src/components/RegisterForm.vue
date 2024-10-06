@@ -5,53 +5,100 @@
       <div class="form-row">
         <div class="form-group col">
           <label for="username">Nome de usuário</label>
-          <input id="username" v-model="username" type="text" placeholder="Escolha um nome de usuário" >
-          <p v-if="submitted && errors.username" class="error-message">{{ errors.username }}</p>
+          <input 
+            id="username" 
+            v-model="username" 
+            type="text" 
+            placeholder="Escolha um nome de usuário"
+            :class="{ 'is-invalid': submitted && errors.username }"
+          >
+          <div v-if="submitted && errors.username" class="error-message">{{ errors.username }}</div>
         </div>
         <div class="form-group col">
           <label for="fullName">Nome completo</label>
-          <input id="fullName" v-model="fullName" type="text" placeholder="Seu nome completo" >
-          <p v-if="submitted && errors.fullName" class="error-message">{{ errors.fullName }}</p>
+          <input 
+            id="fullName" 
+            v-model="fullName" 
+            type="text" 
+            placeholder="Seu nome completo"
+            :class="{ 'is-invalid': submitted && errors.fullName }"
+          >
+          <div v-if="submitted && errors.fullName" class="invalid-feedback">{{ errors.fullName }}</div>
         </div>
       </div>
       <div class="form-row">
         <div class="form-group col">
           <label for="birthDate">Data de nascimento</label>
-          <input id="birthDate" v-model="birthDate" type="date" >
-          <p v-if="submitted && errors.birthDate" class="error-message">{{ errors.birthDate }}</p>
+          <input 
+            id="birthDate" 
+            v-model="birthDate" 
+            type="date"
+            :class="{ 'is-invalid': submitted && errors.birthDate }"
+          >
+          <div v-if="submitted && errors.birthDate" class="invalid-feedback">{{ errors.birthDate }}</div>
         </div>
         <div class="form-group col">
           <label for="phone">Telefone</label>
-          <input id="phone" v-model="phone" type="tel" placeholder="Seu telefone" >
-          <p v-if="submitted && errors.phone" class="error-message">{{ errors.phone }}</p>
+          <input 
+            id="phone" 
+            v-model="phone" 
+            type="tel" 
+            placeholder="Seu telefone"
+            :class="{ 'is-invalid': submitted && errors.phone }"
+          >
+          <div v-if="submitted && errors.phone" class="invalid-feedback">{{ errors.phone }}</div>
         </div>
       </div>
       <div class="form-row">
         <div class="form-group col">
           <label for="email">Email</label>
-          <input id="email" v-model="email" type="email" placeholder="Seu email" >
-          <p v-if="submitted && errors.email" class="error-message">{{ errors.email }}</p>
+          <input 
+            id="email" 
+            v-model="email" 
+            type="email" 
+            placeholder="Seu email"
+            :class="{ 'is-invalid': submitted && errors.email }"
+          >
+          <div v-if="submitted && errors.email" class="invalid-feedback">{{ errors.email }}</div>
         </div>
         <div class="form-group col">
           <label for="emailConfirmation">Confirmar Email</label>
-          <input id="emailConfirmation" v-model="emailConfirmation" type="email" placeholder="Confirme seu email" >
-          <p v-if="submitted && errors.emailConfirmation" class="error-message">{{ errors.emailConfirmation }}</p>
+          <input 
+            id="emailConfirmation" 
+            v-model="emailConfirmation" 
+            type="email" 
+            placeholder="Confirme seu email"
+            :class="{ 'is-invalid': submitted && errors.emailConfirmation }"
+          >
+          <div v-if="submitted && errors.emailConfirmation" class="invalid-feedback">{{ errors.emailConfirmation }}</div>
         </div>
       </div>
       <div class="form-row">
         <div class="form-group col">
           <label for="password">Senha</label>
-          <input id="password" v-model="password" type="password" placeholder="Escolha uma senha" >
-          <p v-if="submitted && errors.password" class="error-message">{{ errors.password }}</p>
+          <input 
+            id="password" 
+            v-model="password" 
+            type="password" 
+            placeholder="Escolha uma senha"
+            :class="{ 'is-invalid': submitted && errors.password }"
+          >
+          <div v-if="submitted && errors.password" class="invalid-feedback">{{ errors.password }}</div>
         </div>
         <div class="form-group col">
           <label for="passwordConfirmation">Confirmar Senha</label>
-          <input id="passwordConfirmation" v-model="passwordConfirmation" type="password" placeholder="Confirme sua senha" >
-          <p v-if="submitted && errors.passwordConfirmation" class="error-message">{{ errors.passwordConfirmation }}</p>
+          <input 
+            id="passwordConfirmation" 
+            v-model="passwordConfirmation" 
+            type="password" 
+            placeholder="Confirme sua senha"
+            :class="{ 'is-invalid': submitted && errors.passwordConfirmation }"
+          >
+          <div v-if="submitted && errors.passwordConfirmation" class="invalid-feedback">{{ errors.passwordConfirmation }}</div>
         </div>
       </div>
       <div class="button-group">
-        <button type="button" class="btn back-btn" @click="goToLogin">Voltar para Login</button>
+        <button  class="btn back-btn" @click="goToLogin">Voltar para Login</button>
         <button type="submit" class="btn submit-btn">Cadastrar</button>
       </div>
     </form>
@@ -83,53 +130,74 @@ const errors = reactive({
   passwordConfirmation: ''
 })
 
-const submitted = ref(false);
+const submitted = ref(false)
 
 const validateForm = () => {
-  let isValid = true;
-
-  Object.keys(errors).forEach(key => errors[key] = '');
+  let isValid = true
 
   if (username.value.trim() === '') {
-    errors.username = 'Nome de usuário é obrigatório.';
-    isValid = false;
-  }
-  if (fullName.value.trim() === '') {
-    errors.fullName = 'Nome completo é obrigatório.';
-    isValid = false;
-  }
-  if (birthDate.value.trim() === '') {
-    errors.birthDate = 'Data de nascimento é obrigatória.';
-    isValid = false;
-  }
-  if (phone.value.trim() === '') {
-    errors.phone = 'Telefone é obrigatório.';
-    isValid = false;
-  }
-  if (email.value.trim() === '') {
-    errors.email = 'Email é obrigatório.';
-    isValid = false;
-  }
-  if (email.value !== emailConfirmation.value) {
-    errors.emailConfirmation = 'Emails não coincidem.';
-    isValid = false;
-  }
-  if (password.value.trim() === '') {
-    errors.password = 'Senha é obrigatória.';
-    isValid = false;
-  }
-  if (password.value !== passwordConfirmation.value) {
-    errors.passwordConfirmation = 'Senhas não coincidem.';
-    isValid = false;
+    errors.username = 'Nome de usuário é obrigatório.'
+    isValid = false
+  } else {
+    errors.username = ''
   }
 
-  return isValid;
+  if (fullName.value.trim() === '') {
+    errors.fullName = 'Nome completo é obrigatório.'
+    isValid = false
+  } else {
+    errors.fullName = ''
+  }
+
+  if (birthDate.value.trim() === '') {
+    errors.birthDate = 'Data de nascimento é obrigatória.'
+    isValid = false
+  } else {
+    errors.birthDate = ''
+  }
+
+  if (phone.value.trim() === '') {
+    errors.phone = 'Telefone é obrigatório.'
+    isValid = false
+  } else {
+    errors.phone = ''
+  }
+
+  if (email.value.trim() === '') {
+    errors.email = 'Email é obrigatório.'
+    isValid = false
+  } else {
+    errors.email = ''
+  }
+
+  if (email.value !== emailConfirmation.value) {
+    errors.emailConfirmation = 'Emails não coincidem.'
+    isValid = false
+  } else {
+    errors.emailConfirmation = ''
+  }
+
+  if (password.value.trim() === '') {
+    errors.password = 'Senha é obrigatória.'
+    isValid = false
+  } else {
+    errors.password = ''
+  }
+
+  if (password.value !== passwordConfirmation.value) {
+    errors.passwordConfirmation = 'Senhas não coincidem.'
+    isValid = false
+  } else {
+    errors.passwordConfirmation = ''
+  }
+
+  return isValid
 }
 
 const handleSubmit = async () => {
-  submitted.value = true;
+  submitted.value = true
   if (!validateForm()) {
-    return;  
+    return
   }
 
   try {
@@ -146,25 +214,26 @@ const handleSubmit = async () => {
         phone: phone.value,
         birthDate: birthDate.value,
       }),
-    });
+    })
 
-    const data = await response.json();
+    const data = await response.json()
 
     if (response.ok) {
-      alert('Cadastro realizado com sucesso!');
-      router.push('/login');  
+      alert('Cadastro realizado com sucesso!')
+      router.push('/login')
     } else {
-      alert(data.msg);  
+      alert(data.msg)
     }
   } catch (error) {
-    console.error('Erro no servidor:', error);
-    alert('Ocorreu um erro no servidor. Tente novamente mais tarde.');
+    console.error('Erro no servidor:', error)
+    alert('Ocorreu um erro no servidor. Tente novamente mais tarde.')
   }
 }
 
 const goToLogin = () => {
   router.push('/login')
 }
+
 </script>
 
 <style scoped>
