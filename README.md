@@ -4,7 +4,7 @@ Esta é uma API desenvolvida em Node.js usando Express e MongoDB para gerenciar 
 
 ## Link do Deploy
 
-[Link do Deploy]()
+[Link do Deploy](https://login-project-pbqr.vercel.app/)
 
 ## Tecnologias Utilizadas
 
