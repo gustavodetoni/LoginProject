@@ -46,7 +46,7 @@ const enviarForm = async () => {
 
     if (response.ok) {
       localStorage.setItem('token', data.token);
-      window.location.href = '/home';
+      router.push('/home');
     } else {
       alert(data.msg);
     }
